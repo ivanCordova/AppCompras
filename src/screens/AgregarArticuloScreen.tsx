@@ -73,8 +73,9 @@ const AgregarArticuloScreen = () => {
             type: 'image/jpeg',
             name: 'Imagen.jpg'
         });
+        artTemp.append("idusuario",2246)
 
-        axios.post(_url + 'Articulos/InsertarArticuloConFoto', artTemp, {
+        axios.post(_url + 'api/Moviles/InsertarArticuloConFoto', artTemp, {
             headers: {
                 "content-type": "multipart/form-data"
             }

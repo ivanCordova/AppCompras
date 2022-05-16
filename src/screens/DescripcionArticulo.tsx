@@ -10,16 +10,17 @@ import { EstiloDescripcionArticulo } from '../styles/Estilos';
 import NumberFormat from 'react-number-format';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { contexto } from '../utils/AppContext';
 
 type Props = StackScreenProps<RootStackParamList, 'DescripcionArticulo'>;
 const DescripcionArticulo = ({ route, navigation }: Props) => {
-
+  const context = useContext(contexto)
   
   const { idArticulo } = route.params;
   const [articulo, setArticulo] = useState<IArticulo>()
   const [cantidad, setCantidad] = useState<number>(0)
   useEffect(() => {
-    axios.get(`${_url}Articulos/ObtenerArticuloPorId/${idArticulo}`)
+    axios.get(`${_url}api/Moviles/ObtenerArticuloPorId/${idArticulo}`)
       .then(res => {
         const articulo = res.data;
         setArticulo(articulo);
@@ -64,7 +65,7 @@ const DescripcionArticulo = ({ route, navigation }: Props) => {
       <Pressable style={EstiloDescripcionArticulo.botonComprar} onPress={() => console.log("")}>
         <Text style={EstiloDescripcionArticulo.textoBotonComprar}>Comprar</Text>
       </Pressable>
-      <Pressable style={EstiloDescripcionArticulo.botonCarrito} onPress={() => console.log("hola")}>
+      <Pressable style={EstiloDescripcionArticulo.botonCarrito} onPress={() => context.AgregarCarrito(articulo!)}>
         <Text style={EstiloDescripcionArticulo.textoBotoncarrito}>Agregar al carrito</Text>
       </Pressable>
     </ScrollView>

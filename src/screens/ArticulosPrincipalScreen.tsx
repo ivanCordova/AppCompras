@@ -17,7 +17,7 @@ const ArticulosPrincipalScreen = ({ route, navigation }: Props) => {
 
   const [articulos, setArticulos] = useState<IArticulo[]>([])
   useEffect(() => {
-    axios.get(`${_url}Articulos/ObtenerArticulos`)
+    axios.get(`${_url}api/Moviles/ObtenerArticulos`)
       .then(res => {
         const articulos = res.data;
      
@@ -36,7 +36,7 @@ const ArticulosPrincipalScreen = ({ route, navigation }: Props) => {
         <ArticuloComponent onClick={() => handle(articulo.item.id)} {...articulo.item}  ></ArticuloComponent>
       )} ItemSeparatorComponent={() => <View style={EstilosGlobales.separador} />}></FlatList>
       <ActionButton buttonColor="rgba(231,76,60,1)">
-        <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+        <ActionButton.Item buttonColor='#9b59b6' title="Nuevo Producto" onPress={() => navigation.navigate("AgregarArticulo")}>
           <Icon name="plus" style={EstilosGlobales.actionButtonIcon} />
         </ActionButton.Item>
         <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => { }}>
