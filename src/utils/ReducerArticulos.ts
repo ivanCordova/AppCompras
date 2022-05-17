@@ -16,11 +16,23 @@ export function reducerCarrito(state : IArticulo[], action: Action): IArticulo[]
     switch (type) {
         case OperacionesCarritoEnum.Agregar : {
             const arrayTemp = [...state];
-            arrayTemp.push(payload);
+            const articuloCarrito = arrayTemp.find(ar => ar.id === payload.id)
+            const articuloCarritoIndex = arrayTemp.findIndex(ar => ar.id === payload.id)
+            if (articuloCarrito === undefined) {
+                arrayTemp.push(payload)
+            } else {
+                articuloCarrito.cantidad = payload.cantidad
+                arrayTemp[articuloCarritoIndex] = articuloCarrito
+            }
             return arrayTemp;
         }
         case OperacionesCarritoEnum.Actualizar:{
             return state;
+        }
+        case OperacionesCarritoEnum.EliminarArticulo:{
+            const arrayTemp = [...state];
+            const newArray = arrayTemp.filter((pr) => pr.id !== payload.id)
+            return newArray
         }
         default:
             return state;

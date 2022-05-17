@@ -8,7 +8,8 @@ const ValorInicial : IArticulo[] = [];
 
 interface ContextProps{
     carrito: IArticulo[],
-    AgregarCarrito: (articulo:IArticulo) => void
+    AgregarCarrito: (articulo:IArticulo) => void,
+    EliminarArticulo: (articulo:IArticulo) => void
 }
 
 interface Props{
@@ -24,10 +25,14 @@ const AppContext = ({children}: Props) => {
     const AgregarCarrito = (articulo: IArticulo) => {
         dispatch({type: OperacionesCarritoEnum.Agregar, payload: articulo})
     }
+    const EliminarArticulo = (articulo: IArticulo) => {
+        dispatch({type: OperacionesCarritoEnum.EliminarArticulo, payload: articulo})
+    }
     return(
         <contexto.Provider value={{
             carrito : state,
-            AgregarCarrito
+            AgregarCarrito,
+            EliminarArticulo
         }}>
             {children}
         </contexto.Provider>

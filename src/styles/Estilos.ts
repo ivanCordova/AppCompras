@@ -93,6 +93,19 @@ export const ProductosPrincipal = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'rgba(242, 244, 244,0.5)',
 
+    },
+    eliminarContainer:{
+        flexDirection: 'row',
+        width: "90%",
+        justifyContent: "center",
+        backgroundColor: "red",
+        alignSelf: "center",
+        borderRadius: 10,
+        marginBottom: 10
+    },
+    botonEliminarCarrito:{
+        fontSize: 30,
+        height: "auto"
     }
 })
 

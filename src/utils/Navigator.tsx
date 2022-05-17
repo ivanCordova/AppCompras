@@ -5,6 +5,7 @@ import { Button, Pressable, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AgregarArticuloScreen from '../screens/AgregarArticuloScreen';
 import ArticulosPrincipalScreen from '../screens/ArticulosPrincipalScreen';
+import CarritoScreen from '../screens/CarritoScreen';
 import DescripcionArticulo from '../screens/DescripcionArticulo';
 import { contexto } from './AppContext';
 import { RootStackParamList } from './RootStackParam';
@@ -13,10 +14,12 @@ import { RootStackParamList } from './RootStackParam';
 const Navigator = () => {
   const Stack = createStackNavigator<RootStackParamList>();
   const context = useContext(contexto)
- 
+  const print = () => {
+    
+  }
   return (
     <NavigationContainer >
-        <Stack.Navigator screenOptions={{
+        <Stack.Navigator screenOptions={({ navigation }) => ({
           headerStyle: {
             backgroundColor: "#000",
           },
@@ -28,7 +31,7 @@ const Navigator = () => {
                 <Text style={{ fontFamily: 'Arial', fontSize: 15, color: 'white', fontWeight: 'bold' }}>
                 </Text>
               </Icon.Button>
-              <Icon.Button name="cart-plus" backgroundColor="#000">
+              <Icon.Button name="cart-plus" backgroundColor="#000" onPress={() => navigation.navigate("Carrito")}>
                 <Text style={{ fontFamily: 'Arial', fontSize: 15, color: 'white', fontWeight: 'bold' }}>
                  {context.carrito.length}
                 </Text>
@@ -41,10 +44,11 @@ const Navigator = () => {
               </Text>
             </Icon.Button>
           ),
-        }} initialRouteName='Principal'>
+        })} initialRouteName='Principal'>
           <Stack.Screen name='Principal' component={ArticulosPrincipalScreen}></Stack.Screen>
           <Stack.Screen name='AgregarArticulo' component={AgregarArticuloScreen}></Stack.Screen>
           <Stack.Screen name='DescripcionArticulo' component={DescripcionArticulo}></Stack.Screen>
+          <Stack.Screen name='Carrito' component={CarritoScreen}></Stack.Screen>
         </Stack.Navigator>
 
     </NavigationContainer>

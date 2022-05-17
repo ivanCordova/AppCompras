@@ -4,4 +4,5 @@ export type RootStackParamList = {
     DescripcionArticulo: {idArticulo : number | undefined}
     Actualizar: {usedId : string};
     Prueba: undefined;
+    Carrito: undefined;
 };

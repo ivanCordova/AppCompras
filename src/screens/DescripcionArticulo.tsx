@@ -18,7 +18,8 @@ const DescripcionArticulo = ({ route, navigation }: Props) => {
   
   const { idArticulo } = route.params;
   const [articulo, setArticulo] = useState<IArticulo>()
-  const [cantidad, setCantidad] = useState<number>(0)
+  const articuloCarrito = context.carrito.find(ar => ar.id === idArticulo)?.cantidad
+  const [cantidad, setCantidad] = useState<number>((articuloCarrito === undefined)?0:articuloCarrito)
   useEffect(() => {
     axios.get(`${_url}api/Moviles/ObtenerArticuloPorId/${idArticulo}`)
       .then(res => {
@@ -62,10 +63,13 @@ const DescripcionArticulo = ({ route, navigation }: Props) => {
             <Icon name='plus' size={30} color={'white'}></Icon>
           </Pressable>
       </View>
-      <Pressable style={EstiloDescripcionArticulo.botonComprar} onPress={() => console.log("")}>
+      <Pressable style={EstiloDescripcionArticulo.botonComprar} onPress={() => console.log(`Articulo CArrito: ${cantidad}`)}>
         <Text style={EstiloDescripcionArticulo.textoBotonComprar}>Comprar</Text>
       </Pressable>
-      <Pressable style={EstiloDescripcionArticulo.botonCarrito} onPress={() => context.AgregarCarrito(articulo!)}>
+      <Pressable style={EstiloDescripcionArticulo.botonCarrito} onPress={() => {
+        articulo!.cantidad = cantidad
+        context.AgregarCarrito(articulo!)
+      }}>
         <Text style={EstiloDescripcionArticulo.textoBotoncarrito}>Agregar al carrito</Text>
       </Pressable>
     </ScrollView>

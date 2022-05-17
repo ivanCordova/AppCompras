@@ -7,5 +7,6 @@ export interface IArticulo{
     stock : number;
     foto? : string;
     onClick?() : void;
+    cantidad?: number
 }
 
