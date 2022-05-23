@@ -1,20 +1,21 @@
 import { IArticulo } from "../models/IArticulo"
- 
-export enum OperacionesCarritoEnum{
+
+export enum OperacionesCarritoEnum {
     Agregar = "AGREGAR",
     EliminarArticulo = "ELIMINAR",
-    Actualizar = "ACTUALIZAR"
+    Actualizar = "ACTUALIZAR",
+    EliminarCarrito = "ELIMINAR_CARRITO"
 }
 
-type Action ={
-    type : OperacionesCarritoEnum,
-    payload : IArticulo 
+type Action = {
+    type: OperacionesCarritoEnum,
+    payload: IArticulo
 }
 
-export function reducerCarrito(state : IArticulo[], action: Action): IArticulo[]{
-    const {type, payload} = action;
+export function reducerCarrito(state: IArticulo[], action: Action): IArticulo[] {
+    const { type, payload } = action;
     switch (type) {
-        case OperacionesCarritoEnum.Agregar : {
+        case OperacionesCarritoEnum.Agregar: {
             const arrayTemp = [...state];
             const articuloCarrito = arrayTemp.find(ar => ar.id === payload.id)
             const articuloCarritoIndex = arrayTemp.findIndex(ar => ar.id === payload.id)
@@ -26,13 +27,17 @@ export function reducerCarrito(state : IArticulo[], action: Action): IArticulo[]
             }
             return arrayTemp;
         }
-        case OperacionesCarritoEnum.Actualizar:{
+        case OperacionesCarritoEnum.Actualizar: {
             return state;
         }
-        case OperacionesCarritoEnum.EliminarArticulo:{
+        case OperacionesCarritoEnum.EliminarArticulo: {
             const arrayTemp = [...state];
             const newArray = arrayTemp.filter((pr) => pr.id !== payload.id)
             return newArray
+        }
+        case OperacionesCarritoEnum.EliminarCarrito: {
+            const arrayTemp: IArticulo[] = []
+            return arrayTemp
         }
         default:
             return state;

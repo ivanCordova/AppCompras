@@ -106,6 +106,17 @@ export const ProductosPrincipal = StyleSheet.create({
     botonEliminarCarrito:{
         fontSize: 30,
         height: "auto"
+    },
+    comprarContainer:{
+        flexDirection: 'row',
+        width: "90%",
+        height: 80,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "green",
+        alignSelf: "center",
+        borderRadius: 10,
+        marginBottom: 10
     }
 })
 

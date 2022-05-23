@@ -28,6 +28,8 @@ const AppContext = ({children}: Props) => {
     const EliminarArticulo = (articulo: IArticulo) => {
         dispatch({type: OperacionesCarritoEnum.EliminarArticulo, payload: articulo})
     }
+
+
     return(
         <contexto.Provider value={{
             carrito : state,

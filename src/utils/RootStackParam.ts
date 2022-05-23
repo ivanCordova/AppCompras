@@ -5,4 +5,5 @@ export type RootStackParamList = {
     Actualizar: {usedId : string};
     Prueba: undefined;
     Carrito: undefined;
+    Favoritos: undefined;
 };

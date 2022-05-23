@@ -15,7 +15,7 @@ const ArticuloComponent = (articulo: IArticulo) => {
                 <Image source={{ uri: _url + articulo.foto }} style={ProductosPrincipal.ImagenesPrincipal} />
                 <View style={ProductosPrincipal.contenedorFavorito}>
                     <Pressable onPress={(e) => setFavorito(!favorito)}>
-                        <Icon name="heart" style={EstilosGlobales.actionButtonIcon} color={!favorito ? '#2C3E50' : 'red'} />
+                        <Icon name="heart" style={EstilosGlobales.actionButtonIcon} color={articulo.favorito != 1 ? '#2C3E50' : 'red'} />
                     </Pressable>
                 </View>
                 <View style={ProductosPrincipal.informacionProducto}>

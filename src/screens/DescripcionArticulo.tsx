@@ -28,6 +28,20 @@ const DescripcionArticulo = ({ route, navigation }: Props) => {
       })
   }, [])
 
+  const favoritos = () => {
+    axios.post(`${_url}api/Moviles/GuardarFavorito`,{
+      idUsuario : 2246,
+      idArticulo: idArticulo
+
+    })
+    .then( (response) => {
+        Alert.alert("Correcto","Favorito agregado correctamente");
+    })
+    .catch( (error) => {
+        console.log("Error_ " + error);
+    });
+  }
+
   const sumar = () =>{
       if(cantidad !== articulo?.stock!){
         setCantidad(cantidad + 1);
@@ -48,7 +62,10 @@ const DescripcionArticulo = ({ route, navigation }: Props) => {
 
   return (
     <ScrollView contentContainerStyle={EstiloDescripcionArticulo.container} >
-      <Text style={EstiloDescripcionArticulo.titulo}>{articulo?.nombre}</Text>
+      <View style={{flexDirection: "row", justifyContent: "space-between", marginVertical: 5}}>
+        <Text style={EstiloDescripcionArticulo.titulo}>{articulo?.nombre}</Text>
+        <Icon onPress={() => favoritos()} name='heart' size={30} color={'white'}></Icon>
+      </View>
       <Image source={{ uri: _url + articulo?.foto }} style={EstiloDescripcionArticulo.descripcionImagen} />
       <NumberFormat value={articulo?.precio} displayType='text' thousandSeparator prefix='$' decimalSeparator='.' renderText={value => <Text style={EstiloDescripcionArticulo.precio}>{value}</Text>} />
       <Text style={EstiloDescripcionArticulo.titulo}>Descripción</Text>

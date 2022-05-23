@@ -8,5 +8,6 @@ export interface IArticulo{
     foto? : string;
     onClick?() : void;
     cantidad?: number
+    favorito?: number
 }
 

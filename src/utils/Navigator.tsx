@@ -7,6 +7,7 @@ import AgregarArticuloScreen from '../screens/AgregarArticuloScreen';
 import ArticulosPrincipalScreen from '../screens/ArticulosPrincipalScreen';
 import CarritoScreen from '../screens/CarritoScreen';
 import DescripcionArticulo from '../screens/DescripcionArticulo';
+import FavoritosScreen from '../screens/FavoritosScreen';
 import { contexto } from './AppContext';
 import { RootStackParamList } from './RootStackParam';
 
@@ -49,6 +50,7 @@ const Navigator = () => {
           <Stack.Screen name='AgregarArticulo' component={AgregarArticuloScreen}></Stack.Screen>
           <Stack.Screen name='DescripcionArticulo' component={DescripcionArticulo}></Stack.Screen>
           <Stack.Screen name='Carrito' component={CarritoScreen}></Stack.Screen>
+          <Stack.Screen name='Favoritos' component={FavoritosScreen}></Stack.Screen>
         </Stack.Navigator>
 
     </NavigationContainer>
